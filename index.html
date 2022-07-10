@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- SEO TAGS -->
+    <meta property="og:title" content="Link de WhatsApp">
+    <meta property="og:description" content="Crie links encurtados para você ou sua empresa com facilidade.">
+    <meta name="description" content="Crie links encurtados para você ou sua empresa com facilidade.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="www.andremourasantos.com/wplink">
+    <meta name="image" property="og:image" content="https://andremourasantos.com/imagens/miniaturas/github.jpg">
+
+    <!-- OUTRAS TAGS -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="André Moura Santos">
+    <meta name="application-name" content="Link de WhatsApp">
+    <meta name="theme-color" content="#fdf9f2"/>
+
+    <!-- LINKS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://andremourasantos.com/imagens/favicon.ico" type="image/x-icon">
+
+    <title>Link de WhatsApp</title>
+</head>
+<body>
+    <header>
+        <!--ESQUERDA/CIMA-->
+        <section>
+            <img id="logo-cabeçalho" src="/imagens/link.png" alt="Ícone de link.">
+            <div>
+                <h1>Link de WhatsApp</h1>
+                <p id="subtitulo_1">Crie links facilmente utilizando a API oficial do WhatsApp.</p>
+                <p id="subtitulo_2">Encurtador com API oficial.</p>
+            </div>
+        </section>
+        <!--DIREITA/BAIXO-->
+        <section>
+            <button style="display: none;" class="btn_menu">Idioma</button>
+            <button id="tema_da_pagina_btn" class="btn_menu btn_menu_icone" style="display: none;"><img src="imagens/modo_claro.png" alt="Ícone de Sol."></button>
+            <button id="info_btn" class="btn_menu btn_menu_icone"><img src="imagens/info.png" alt="Ícone de informação."></button>
+        </section>
+    </header>
+    <main>
+        <!--ESQUERDA/CIMA-->
+        <section>
+            <article id="container_ferramenta">
+                <h2>Crie seu link</h2>
+                <p>Preencha os campos abaixo para obter o seu link encurtado.</p>
+                <div id="ferramenta_entradas">
+                    <div style="display: none;" id="ferramenta_entrada_pais">
+                        <img src="imagens/pais.png" alt="">
+                        <div>
+                            <p>Selecione o país</p>
+                            <input type="number" name="dddPais" id="dddPais">
+                        </div>
+                    </div>
+                    <div id="ferramenta_entrada_telefone">
+                        <img src="imagens/telefone.png" alt="">
+                        <div>
+                            <p>Digite o telefone</p>
+                            <input type="number" name="numero_telefone" id="numero_telefone" placeholder="+55 00 91234-5678">
+                        </div>
+                    </div>
+                    <div id="ferramenta_entrada_mensagem">
+                        <img src="imagens/mensagem.png" alt="">
+                        <div>
+                            <p>Escreva sua mensagem</p>
+                            <input type="text" name="mensagem" id="mensagem" placeholder="ex: Oi, gostaria de saber mais sobre...">
+                        </div>
+                    </div>
+                    <div style="display:none;"d id="ferramenta_saida">
+                        <div>
+                            <p>Seu link:</p>
+                            <p onclick="copiarLink()" id="ferramenta_saida_link">Seu link será gerado aqui...</p>
+                        </div>
+                        <button id="ferramenta_saida_copiar"><img src="imagens/link.png" alt=""></button>
+                    </div>
+                </div>
+                <div class="container_btns">
+                    <button id="obter_link_btn" onclick="verificarEntradasFerramenta()">Obter link</button>
+                    <button disabled id="abrir_link_btn"><img src="imagens/abrir_link.png" alt="" onclick="abrirLink()"></button>
+                </div>
+            </article>
+        </section>
+        <!--DIREITA/BAIXO-->
+        <section>
+            <article id="container_sobre">
+                <img src="imagens/pergunta.png" alt="Ícone de pergunta.">
+                <h2>Como funciona?</h2>
+                <p>Para criar um link encurtado do WhatsApp, você precisa apenas do número de telefone. Insira essas informações nos respectivos campos e clique em "Criar meu link". Todos os links criados pela ferramenta adicionarão o DDD do Brasil (55) automaticamente.</p>
+                <p>Adicionalmente, você pode inserir uma mensagem pré-formatada no seu link, para que ela apareça quando o visualizarem. Para isso, basta preencher o campo "Digite sua mensagem".</p>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>Desenvolvido por <a href="http://andremourasantos.com" target="_blank">André Moura Santos</a>.<br>Feito no Brasil.</p>   
+    </footer>
+
+    <!--POPUPS-->
+    <section style="display: none;" id="container_popup">
+        <article class="popup" id="info_popup">
+            <h2>Sobre o projeto</h2>
+            <p>Este projeto foi desenvolvido com o intuito de oferecer uma ferramenta de fácil uso e visual agradável para criar links encurtados do WhatsApp.</p>
+            <p>Sem qualquer tipo de anúncio, pagamento ou assinatura, seu uso é livre para todos. A ferramenta utiliza a API oficial do WhatsApp para criação de links encurtados.</p>
+            <p>Esse projeto não está afiliado ao WhatsApp ou a Meta Inc.</p>
+            <p>Saiba mais sobre o projeto, que conta com licença MIT, através do <a href="http://github.com/andremourasantos" target="_blank" rel="noopener noreferrer">repositório no GitHub de André Moura Santos</a>.</p>
+            <button id="fechar_popup_info" class="btn_fechar_popup">Fechar</button>
+        </article>
+    </section>
+<script defer src="script.js"></script>
+</body>
+</html>
