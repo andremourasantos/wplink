@@ -3,11 +3,11 @@
 <head>
     <!-- SEO TAGS -->
     <meta property="og:title" content="Link de WhatsApp">
-    <meta property="og:description" content="Crie links encurtados para você ou sua empresa com facilidade.">
-    <meta name="description" content="Crie links encurtados para você ou sua empresa com facilidade.">
+    <meta property="og:description" content="Criar links de WhatsApp sem anúncios e totalmente de graça nunca foi tão fácil, acesse já e crie o seu!">
+    <meta name="description" content="Criar links de WhatsApp sem anúncios e totalmente de graça nunca foi tão fácil, acesse já e crie o seu!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="www.andremourasantos.com/wplink">
-    <meta name="image" property="og:image" content="https://andremourasantos.com/imagens/miniaturas/github.jpg">
+    <meta name="image" property="og:image" content="https://andremourasantos.com/wplink/capa.png">
 
     <!-- OUTRAS TAGS -->
     <meta charset="UTF-8">
@@ -19,51 +19,46 @@
 
     <!-- LINKS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="https://andremourasantos.com/imagens/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
 
     <title>Link de WhatsApp</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    </style>
 </head>
 <body>
     <header>
         <!--ESQUERDA/CIMA-->
         <section>
-            <img id="logo-cabeçalho" src="imagens/link.png" alt="Ícone de link.">
+            <img id="logo-cabeçalho" src="logo.png" alt="Ícone de link." height="60" width="60">
             <div>
                 <h1>Link de WhatsApp</h1>
-                <p id="subtitulo_1">Crie links facilmente utilizando a API oficial do WhatsApp.</p>
-                <p id="subtitulo_2">Encurtador com API oficial.</p>
+                <p id="subtitulo_1">Crie links facilmente com a API oficial do WhatsApp.</p>
+                <p id="subtitulo_2">Crie links facilmente.</p>
             </div>
         </section>
         <!--DIREITA/BAIXO-->
         <section>
-            <button style="display: none;" class="btn_menu">Idioma</button>
-            <button id="tema_da_pagina_btn" class="btn_menu btn_menu_icone" style="display: none;"><img src="imagens/modo_claro.png" alt="Ícone de Sol."></button>
-            <button id="info_btn" class="btn_menu btn_menu_icone"><img src="imagens/info.png" alt="Ícone de informação."></button>
+            <button id="abrir_popup_noti_novidades" class="btn_menu btn_menu_icone"><img src="imagens/modo_escuro.png" alt="Ícone de Sol." height="40" width="40"></button>
+            <button id="abrir_popup_doacao" class="btn_menu_icone" ><img src="imagens/doacao.png" alt="" height="40" width="40"></button>
+            <button id="abrir_popup_info" class="btn_menu btn_menu_icone"><img src="imagens/info.png" alt="Ícone de informação." height="40" width="40"></button>
         </section>
     </header>
     <main>
         <!--ESQUERDA/CIMA-->
         <section>
             <article id="container_ferramenta">
-                <h2>Crie seu link</h2>
-                <p>Preencha os campos abaixo para obter o seu link encurtado.</p>
                 <div id="ferramenta_entradas">
-                    <div style="display: none;" id="ferramenta_entrada_pais">
-                        <img src="imagens/pais.png" alt="">
-                        <div>
-                            <p>Selecione o país</p>
-                            <input type="number" name="dddPais" id="dddPais">
-                        </div>
-                    </div>
                     <div id="ferramenta_entrada_telefone">
-                        <img src="imagens/telefone.png" alt="">
+                        <img src="imagens/telefone.png" alt="" height="45" width="45">
                         <div>
                             <p>Digite o telefone</p>
-                            <input type="number" name="numero_telefone" id="numero_telefone" placeholder="+55 00 91234-5678">
+                            <input type="number" name="numero_telefone" id="numero_telefone" placeholder="00 91234 5678">
                         </div>
                     </div>
                     <div id="ferramenta_entrada_mensagem">
-                        <img src="imagens/mensagem.png" alt="">
+                        <img src="imagens/mensagem.png" alt="" height="45" width="45">
                         <div>
                             <p>Escreva sua mensagem</p>
                             <input type="text" name="mensagem" id="mensagem" placeholder="ex: Oi, gostaria de saber mais sobre...">
@@ -74,38 +69,87 @@
                             <p>Seu link:</p>
                             <p onclick="copiarLink()" id="ferramenta_saida_link">Seu link será gerado aqui...</p>
                         </div>
-                        <button id="ferramenta_saida_copiar"><img src="imagens/link.png" alt=""></button>
+                        <button id="ferramenta_saida_copiar"><img src="imagens/link.png" alt="" height="30" width="30"></button>
                     </div>
                 </div>
                 <div class="container_btns">
-                    <button id="obter_link_btn" onclick="verificarEntradasFerramenta()">Obter link</button>
-                    <button disabled id="abrir_link_btn"><img src="imagens/abrir_link.png" alt="" onclick="abrirLink()"></button>
+                    <button id="obter_link_btn">Obter link</button>
+                    <button disabled id="abrir_link_btn"><img src="imagens/abrir_link.png" alt="" onclick="abrirLink()" height="50" width="50"></button>
                 </div>
             </article>
         </section>
         <!--DIREITA/BAIXO-->
         <section>
             <article id="container_sobre">
-                <img src="imagens/pergunta.png" alt="Ícone de pergunta.">
+                <img loading="lazy" src="imagens/questao.png" alt="Ícone de pergunta." height="96" width="96">
                 <h2>Como funciona?</h2>
-                <p>Para criar um link encurtado do WhatsApp, você precisa apenas do número de telefone. Insira essas informações nos respectivos campos e clique em "Criar meu link". Todos os links criados pela ferramenta adicionarão o DDD do Brasil (55) automaticamente.</p>
-                <p>Adicionalmente, você pode inserir uma mensagem pré-formatada no seu link, para que ela apareça quando o visualizarem. Para isso, basta preencher o campo "Digite sua mensagem".</p>
+                <p>Para criar um link de WhatsApp basta que você digite o número de telefone, com o DDD, e, opcionalmente, você também pode adicionar uma mensagem, após isso, clique em "Obter link" e pronto!</p>
+                <p>Seu link será criado através da API oficial do WhatsApp e não contará com nenhum tipo de propaganda ou link suspeito.</p>
             </article>
         </section>
     </main>
     <footer>
-        <p>Desenvolvido por <a href="http://andremourasantos.com" target="_blank">André Moura Santos</a>.<br>Feito no Brasil.</p>   
+        <p>Desenvolvido por <a href="http://andremourasantos.com" target="_blank">André Moura Santos</a>. Ícones de <a href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phospor Icons</a> e <a href="https://www.flaticon.com/authors/kawaii/flat" target="_blank" rel="noopener noreferrer">Flat Icon</a>. Feito no &#x1F1E7;&#x1F1F7; Brasil.</p>   
     </footer>
 
     <!--POPUPS-->
     <section style="display: none;" id="container_popup">
-        <article class="popup" id="info_popup">
+        <!--SOBRE O PROJETO-->
+        <article class="popup" id="popup_info" style="display: none;">
+            <img loading="lazy" src="imagens/sobre_popup.png" alt="" height="128" width="128">
             <h2>Sobre o projeto</h2>
-            <p>Este projeto foi desenvolvido com o intuito de oferecer uma ferramenta de fácil uso e visual agradável para criar links encurtados do WhatsApp.</p>
-            <p>Sem qualquer tipo de anúncio, pagamento ou assinatura, seu uso é livre para todos. A ferramenta utiliza a API oficial do WhatsApp para criação de links encurtados.</p>
-            <p>Esse projeto não está afiliado ao WhatsApp ou a Meta Inc.</p>
-            <p>Saiba mais sobre o projeto, que conta com licença MIT, através do <a href="http://github.com/andremourasantos" target="_blank" rel="noopener noreferrer">repositório no GitHub de André Moura Santos</a>.</p>
-            <button id="fechar_popup_info" class="btn_fechar_popup">Fechar</button>
+            <p>O objetivo desse projeto é proporcionar uma ferramenta útil e de livre acesso para criar links de WhatsApp sem propaganda, com foco exclusivo no Brasil.</p>
+            <p>Todo o código da página é de livre acesso e se encontra no <a href="http://github.com/andremourasantos" target="_blank" rel="noopener noreferrer">repositório do GitHub de André Moura Santos</a>, com licença MIT.</p>
+            <div class="container_btns">
+                <button id="btn_fechar_popup_info" class="btn_popup btn_fechar_popup">Fechar</button>
+                <button class="btn_popup btn_acao_popup" id="link_github_popup">GitHub</button>
+            </div>
+        </article>
+
+        <!--DOAÇÃO-->
+        <article class="popup" id="popup_doacao" style="display: none;">
+            <img loading="lazy" src="imagens/doacao_popup.png" alt="" height="128" width="128">
+            <h2>Doe para o projeto</h2>
+            <p>A ferramenta de <a href="index.html" target="_self">Link de WhatsApp</a> é gratuita e sem anúncios ou subscrições, pois é um projeto solo criado sem motivação financeira.</p>
+            <p>Para auxiliar novos programadores com o seu desenvolvimento, o código da página também está publicamente disponível, comentado e com licença de uso livre.</p>
+            <p>Você pode incentivar a atualização deste projeto e na criação de mais ferramentas ao doar qualquer quantia!</p>
+            <div class="container_btns">
+                <button id="btn_fechar_popup_doacao" class="btn_popup btn_fechar_popup">Fechar</button>
+                <button class="btn_popup btn_acao_popup" id="link_doar_popup">Doar</button>
+            </div>
+        </article>
+
+        <!--MINI NOTIFICAÇÕES-->
+        <!--SUCESSO-->
+        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_link_sucesso">
+            <img loading="lazy" src="imagens/sucesso_popup.png" alt="" height="96" width="96" id="btn_fechar_popup_noti_link_sucesso">
+            <div>
+                <h3>Link criado com sucesso</h3>
+            </div>
+        </article>
+
+        <!--ERRO-->
+        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_erro_telefone">
+            <img loading="lazy" src="imagens/erro_popup.png" alt="" height="96" width="96">
+            <div>
+                <h3>Ops, algo deu errado...</h3>
+                <p>Parece que você não digitou o número de telefone corretamente.</p>
+            </div>
+            <div class="container_btns">
+                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_erro_telefone">Fechar</button>
+            </div>
+        </article>
+        
+        <!--NOVIDADES-->
+        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_novidades">
+            <img loading="lazy" src="imagens/novidade_popup.png" alt="" height="96" width="96">
+            <div>
+                <h3>Em breve novidades!</h3>
+                <p>Você está tentando utilizar um recurso ainda em desenvolvimento.</p>
+            </div>
+            <div class="container_btns">
+                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_novidades">Fechar</button>
+            </div>
         </article>
     </section>
 <script defer src="script.js"></script>

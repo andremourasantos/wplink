@@ -7,38 +7,73 @@ const infoBtn = document.querySelector('#info_btn')
 let temaDaPagina = 'Claro'
 
 //↓↓ ACIONADORES
+window.addEventListener("load", function(){document.querySelector('#numero_telefone').focus()})
+/*
 if(window.matchMedia('(prefers-color-scheme: dark)').matches){
     alterarTema()
 }
 temaPagina.addEventListener("click", alterarTema)
-infoBtn.addEventListener("click", abrirPopupInfo)
-document.querySelector('#fechar_popup_info').addEventListener('click', fecharPopup)
+*/
+
+    //↓↓ POPUPS
+    //Abre o respectivo Popup
+    document.querySelectorAll('*[id^="abrir_popup"]').forEach(item => item.addEventListener("click", function() {
+        //Identifica o ID do elemento
+        console.log(this.id)
+        console.log('#'+this.id.replace('abrir_', ''))
+        
+        //Aplica os estilos ao respectivo Popup
+        setTimeout(() => {
+            document.querySelector('#'+this.id.replace("abrir_", "")).style.display = 'flex';
+            document.querySelector('html').style.overflow = 'hidden';
+            document.querySelector('#container_popup').style.display = 'flex';
+        }, 125);
+    }))
+
+    //Fecha o Popup
+    document.querySelectorAll('*[id^="btn_fechar_popup"]').forEach(item => item.addEventListener("click", function() {
+        //Identifica o ID do elemento
+        console.log(this.id)
+        console.log('#'+this.id.replace('btn_fechar_', ''))
+
+        //Aplica os estilos ao respectivo Popup
+        setTimeout(() => {
+            document.querySelector('#'+this.id.replace("btn_fechar_", "")).style.animation = 'popupDesaparecer 250ms ease-out';
+        }, 125);
+        setTimeout(() => {
+            document.querySelector('#'+this.id.replace("btn_fechar_", "")).style.display = 'none';
+            document.querySelector('#container_popup').style.display = 'none';
+            document.querySelector('html').style.overflow = 'scroll'
+            document.querySelector('#'+this.id.replace("btn_fechar_", "")).style.animationName = 'popupAparecer'
+        }, 375);
+    }))
+
+        //Botões de links no Popup
+        document.querySelector('#link_github_popup').addEventListener('click', function(){setTimeout(() => {
+            window.open('https://github.com/andremourasantos/wplink', '_blank')
+        }, 125);})
+        document.querySelector('#link_doar_popup').addEventListener('click', function(){setTimeout(() => {
+            window.open('https://link.andremourasantos.com/pix', '_blank')
+        }, 125);})
+
+
 
 //↓↓ FUNÇÕES
+/*
 function alterarTema(){
     document.querySelector('body').classList.toggle('modo_escuro')
     if(temaDaPagina === 'Claro'){
         temaPaginaIcone.setAttribute('src', 'imagens/modo_escuro.png'); temaDaPagina = 'Escuro'
     } else {temaPaginaIcone.setAttribute('src', 'imagens/modo_claro.png'); temaDaPagina = 'Claro'}
 }
-
-function abrirPopupInfo(){
-    document.querySelector('html').style.overflow = 'hidden'
-    document.querySelector('#container_popup').style.display = 'flex';
-}
-
-function fecharPopup(){
-    setTimeout(() => {
-        document.querySelector('#container_popup').style.display = 'none';
-        document.querySelector('html').style.overflow = 'scroll'
-    }, 250);
-}
+*/
 
 //FERRAMENTA//
 const saida = document.querySelector('#ferramenta_saida_link')
-const container_saida = document.querySelector('#ferramenta_saida')
-const btn_copiar_link = document.querySelector('#ferramenta_saida_copiar')
-const btn_abrir_link = document.querySelector('#abrir_link_btn')
+const containerSaida = document.querySelector('#ferramenta_saida')
+const btnObterLink = document.querySelector('#obter_link_btn')
+const btnCopiarLink = document.querySelector('#ferramenta_saida_copiar')
+const btnAbrirLink = document.querySelector('#abrir_link_btn')
 
 let telefone = document.querySelector('#numero_telefone').value
 let mensagem = document.querySelector('#mensagem').value
@@ -46,13 +81,17 @@ let link = ''
 //↑↑ VARIÁVEIS
 
 //↓↓ ACIONADORES
-btn_copiar_link.addEventListener('click', copiarLink)
+btnObterLink.addEventListener('click', verificarEntradasFerramenta)
+btnCopiarLink.addEventListener('click', copiarLink)
 
 //↓↓ FUNÇÕES
 function verificarEntradasFerramenta(){
     telefone = document.querySelector('#numero_telefone').value
     mensagem = document.querySelector('#mensagem').value
-    if(telefone === ''){alert('O campo de telefone deve ser preenchido!')}else if (mensagem === '') {criarLink(telefone)} else {criarLink(telefone, mensagem.replaceAll(' ','%20'))}
+
+    if(telefone.length === 10 || telefone.length === 11){
+        if (mensagem === ''){criarLink(telefone)} else{criarLink(telefone, mensagem.replaceAll(' ','%20'))}
+    } else {exibirErroTelefone()}
 }
 
 function criarLink(telefone, mensagem=0){
@@ -63,10 +102,41 @@ function criarLink(telefone, mensagem=0){
     exibirLink()
 }
 
-function exibirLink(){
-    container_saida.style.display = 'flex'
+function exibirContainerPopup() {
+    document.querySelector('html').style.overflow = 'hidden';
+    document.querySelector('#container_popup').style.display = 'flex';
+}
+
+function exibirErroTelefone() {
+    btnAbrirLink.setAttribute('disabled', 'disabled')
+    containerSaida.style.display = 'none'
+    exibirContainerPopup()
+    document.querySelector('#popup_noti_erro_telefone').style.display = 'flex';
+    setTimeout(() => {
+        document.querySelector('#btn_fechar_popup_noti_erro_telefone').click()
+        document.querySelector('#numero_telefone').focus()
+    }, 2000);
+}
+
+
+
+function exibirLink(){    
+    document.querySelector('html').style.overflow = 'hidden';
+    document.querySelector('#container_popup').style.display = 'flex';
+    document.querySelector('#popup_noti_link_sucesso').style.display = 'flex';
+    setTimeout(() => {
+        document.querySelector('#btn_fechar_popup_noti_link_sucesso').click()
+    }, 500);
+
+
+    containerSaida.style.display = 'flex'
+
+    btnCopiarLink.style.animation = "efeitoTranpolimBtn 1250ms infinite ease-in-out"
+    btnCopiarLink.focus()
+    btnCopiarLink.addEventListener('click', function(){document.activeElement.blur(); btnCopiarLink.style.animation = 'none'})
+
     saida.innerText = link
-    if(btn_abrir_link.hasAttribute('disabled')){btn_abrir_link.removeAttribute('disabled')}else{}
+    btnAbrirLink.removeAttribute('disabled')
 }
 
 function copiarLink(){
@@ -78,5 +148,5 @@ function copiarLink(){
 }
 
 function abrirLink(){
-    if(btn_abrir_link.hasAttribute('disabled')){}else{window.open(link,'_blank')}
+    if(btnAbrirLink.hasAttribute('disabled')){}else{window.open(link,'_blank')}
 }
