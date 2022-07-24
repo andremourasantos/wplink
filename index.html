@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <meta name="theme-color" content="#FDFBEE"/>
+    
     <!-- SEO TAGS -->
     <meta property="og:title" content="Link de WhatsApp">
     <meta property="og:description" content="Criar links de WhatsApp sem anúncios e totalmente de graça nunca foi tão fácil, acesse já e crie o seu!">
@@ -15,7 +17,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="André Moura Santos">
     <meta name="application-name" content="Link de WhatsApp">
-    <meta name="theme-color" content="#fdf9f2"/>
 
     <!-- LINKS -->
     <link rel="stylesheet" href="style.css">
@@ -40,7 +41,7 @@
         </section>
         <!--DIREITA/BAIXO-->
         <section>
-            <button id="abrir_popup_noti_novidades" class="btn_menu btn_menu_icone"><img src="imagens/modo_escuro.png" alt="Ícone de Sol." height="40" width="40"></button>
+            <button id="tema_da_pagina_btn" class="btn_menu btn_menu_icone" onclick="alterarTema(1)"><img src="imagens/tema.png" alt="Ícone de Sol." height="40" width="40"></button>
             <button id="abrir_popup_doacao" class="btn_menu_icone" ><img src="imagens/doacao.png" alt="" height="40" width="40"></button>
             <button id="abrir_popup_info" class="btn_menu btn_menu_icone"><img src="imagens/info.png" alt="Ícone de informação." height="40" width="40"></button>
         </section>
@@ -54,7 +55,7 @@
                         <img src="imagens/telefone.png" alt="" height="45" width="45">
                         <div>
                             <p>Digite o telefone</p>
-                            <input type="number" name="numero_telefone" id="numero_telefone" placeholder="00 91234 5678">
+                            <input type="number" name="numero_telefone" id="numero_telefone" placeholder="00 91234 5678" onkeydown="limitarCaracteres(this);" onkeyup="limitarCaracteres(this);">
                         </div>
                     </div>
                     <div id="ferramenta_entrada_mensagem">
@@ -85,6 +86,7 @@
                 <h2>Como funciona?</h2>
                 <p>Para criar um link de WhatsApp basta que você digite o número de telefone, com o DDD, e, opcionalmente, você também pode adicionar uma mensagem, após isso, clique em "Obter link" e pronto!</p>
                 <p>Seu link será criado através da API oficial do WhatsApp e não contará com nenhum tipo de propaganda ou link suspeito.</p>
+                <p>O número de telefone e mensagem inseridas ficam salvos no seu navegador, <strong onclick="abrirPopup('#popup_noti_cookies')" style="cursor: pointer;">localmente</strong>, durante 7 dias para facilitar o uso da ferramenta.
             </article>
         </section>
     </main>
@@ -99,7 +101,8 @@
             <img loading="lazy" src="imagens/sobre_popup.png" alt="" height="128" width="128">
             <h2>Sobre o projeto</h2>
             <p>O objetivo desse projeto é proporcionar uma ferramenta útil e de livre acesso para criar links de WhatsApp sem propaganda, com foco exclusivo no Brasil.</p>
-            <p>Todo o código da página é de livre acesso e se encontra no <a href="http://github.com/andremourasantos" target="_blank" rel="noopener noreferrer">repositório do GitHub de André Moura Santos</a>, com licença MIT.</p>
+            <p>Confira as últimas novidades da ferramenta <span onclick="abrirPopup('#popup_log_novidades')" style="text-decoration: underline; cursor: pointer;">clicando aqui</span> ou pressione Alt + L!</p>
+            <p>Todo o código da página é de livre acesso e se encontra no repositório do GitHub de André Moura Santos, com licença MIT.</p>
             <div class="container_btns">
                 <button id="btn_fechar_popup_info" class="btn_popup btn_fechar_popup">Fechar</button>
                 <button class="btn_popup btn_acao_popup" id="link_github_popup">GitHub</button>
@@ -119,24 +122,48 @@
             </div>
         </article>
 
+        <!--LOG-->
+        <article class="popup" style="display: none;" id="popup_log_novidades">
+            <img loading="lazy" src="imagens/novidades_versao.png" alt="" height="128" width="128">
+            <h2>Tem novidade desde a sua última visita!</h2>
+            <p>A ferramenta de <a href="index.html" target="_self">Link de WhatsApp</a> está sempre sendo atualizada, confira as novidades mais recentes:</p>
+            <p><strong>Salvamento automático:</strong> O número de telefone digitado é salvo automaticamente (em seu navegador, de maneira local) para futuras visitas.</p>
+            <p><strong>Temas para a página:</strong> Você pode alterar o tema entre <em>Claro</em> e <em>Escuro</em> para utilizar a ferramenta da melhor forma.</p>
+            <p><strong>Auxílio com problemas:</strong> A ferramenta é capaz de, proativamente, indicar problemas e onde se encontram.</p>
+            <p><strong>Atalhos de teclado:</strong> Ao terminar de digitar em um campo, você pode apertar <em>Enter</em> para seguir diretamente para o próximo passo.</p>
+            <p>O que achou das novidades? Você pode conferir as mudanças mais técnicas diretamente no meu <span style="text-decoration: underline; cursor: pointer;" onclick="abrirPopup('#popup_info')">repositório do GitHub</span>!</p>
+            <div class="container_btns">
+                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_log_novidades">Fechar</button>
+            </div>
+        </article>
+
         <!--MINI NOTIFICAÇÕES-->
         <!--SUCESSO-->
         <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_link_sucesso">
-            <img loading="lazy" src="imagens/sucesso_popup.png" alt="" height="96" width="96" id="btn_fechar_popup_noti_link_sucesso">
+            <img loading="lazy" src="imagens/sucesso_popup.png" alt="" height="96" width="96">
             <div>
                 <h3>Link criado com sucesso</h3>
             </div>
         </article>
 
         <!--ERRO-->
-        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_erro_telefone">
+        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_erro">
             <img loading="lazy" src="imagens/erro_popup.png" alt="" height="96" width="96">
             <div>
                 <h3>Ops, algo deu errado...</h3>
-                <p>Parece que você não digitou o número de telefone corretamente.</p>
+                <p id="noti_erro_texto">Por favor, recarregue a página.</p>
             </div>
             <div class="container_btns">
-                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_erro_telefone">Fechar</button>
+                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_erro">Fechar</button>
+            </div>
+        </article>
+
+        <!--BOAS-VINDAS-->
+        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_boas-vindas">
+            <img loading="lazy" src="logo.png" alt="" height="96" width="96">
+            <div>
+                <h3>Boas-vindas!</h3>
+                <p>Você está no lugar certo &#x1F609;</p>
             </div>
         </article>
         
@@ -149,6 +176,18 @@
             </div>
             <div class="container_btns">
                 <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_novidades">Fechar</button>
+            </div>
+        </article>
+
+        <!--COOKIES-->
+        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_cookies">
+            <img loading="lazy" src="imagens/novidade_popup.png" alt="" height="96" width="96">
+            <div>
+                <h3>Cookies salvos</h3>
+                <p>Não cookies salvos.</p>
+            </div>
+            <div class="container_btns">
+                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_cookies">Fechar</button>
             </div>
         </article>
     </section>

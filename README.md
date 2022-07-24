@@ -1,7 +1,7 @@
 # Link de WhatsApp 🔗
 Uma ferramenta simples que auxilia na criação de links encurtados para o WhatsApp através da API oficial.
 
-> O objetivo deste projeto foi de aperfeiçoar as minhas habilidades com manipulação de variáveis em JavaScript, além de identificar ações que o usuário pode não executar corretamente e corrigí-las automaticmente, para obter uma experiência de uso simples e previsível.
+> O objetivo deste projeto foi de aperfeiçoar as minhas habilidades com manipulação de variáveis e objetos em JavaScript, além de identificar ações que o usuário pode não executar corretamente e corrigí-las automaticmente, para obter uma experiência de uso simples e previsível.
 
 - - -
 
@@ -10,16 +10,39 @@ Uma ferramenta simples que auxilia na criação de links encurtados para o Whats
 - Utilizar o Framer para criação de wireframes.
 - Identificar possíveis erros devido a interações do usuário.
 - Previnir e conter erros de interação do usuário.
-- Manipulação de dados em JavaScript.
+- Criação e manipulação de objetos e métodos do objeto.
+- Criação, manipulação e uso de Cookies no navegador.
+- Criar atalhos de teclado para executar ações na página.
 - Uso de variáveis CSS para rápida manipulação e manutenção de elementos em cascata (modo claro/escuro).
 - Criação de código limpo e comentado.
+
+## Log
+
+- **Atualização 1.2: Modo Escuro**
+    - Adicionado atalhos de teclado.
+    - Adicionado o tema Escuro para o site!
+    - Agora algumas informações são salvas em Cookies localmente.
+    - Ainda mais interatividade na página: Novos popups, textos e imagens!
+    - Criação do meu primeiro objeto e método do objeto em JavaScript.
+    - Otimização de código.
+
+
+- **Atualização 1.1: Kawaii!**
+    - Mais animações para as interações.
+    - Mais interatividade na página!
+    - Nova paleta de cores e ícones Kawaii,
+    - Novos textos, imagens e descrições.
+    - Otimização de código.
+    - Otimizações de performance.
+
+
+- **Atualização 1.0**
+    - Lançamento da ferramenta. 
 
 - - -
 
 ## Imagem do projeto 📸
-Confira as imagens do projeto durante o tempo.
-
-### Site lançado
+Confira as imagens do projeto durante o tempo. Abaixo, segue as atualizações que promoveram uma mudança no visual principal do site.
 
 - **Versão 1.1**: [Atualização Kawaii!](https://github.com/andremourasantos/wplink/commit/e2c4f930b241d96a47c6c4b005896a5b28eb10be)
 ![Screenshot 2022-07-17 11 08 15](https://user-images.githubusercontent.com/92397834/179402261-1b967e71-8466-423b-b150-aa07f9cdf3ec.png)
