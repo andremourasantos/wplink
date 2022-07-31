@@ -86,7 +86,7 @@
                 <h2>Como funciona?</h2>
                 <p>Para criar um link de WhatsApp basta que você digite o número de telefone, com o DDD, e, opcionalmente, você também pode adicionar uma mensagem, após isso, clique em "Obter link" e pronto!</p>
                 <p>Seu link será criado através da API oficial do WhatsApp e não contará com nenhum tipo de propaganda ou link suspeito.</p>
-                <p>O número de telefone e mensagem inseridas ficam salvos no seu navegador, <strong onclick="abrirPopup('#popup_noti_cookies')" style="cursor: pointer;">localmente</strong>, durante 7 dias para facilitar o uso da ferramenta.
+                <p>O número de telefone e mensagem inseridas ficam salvos no seu navegador, localmente, para facilitar o uso da ferramenta.
             </article>
         </section>
     </main>
@@ -127,10 +127,7 @@
             <img loading="lazy" src="imagens/novidades_versao.png" alt="" height="128" width="128">
             <h2>Tem novidade desde a sua última visita!</h2>
             <p>A ferramenta de <a href="index.html" target="_self">Link de WhatsApp</a> está sempre sendo atualizada, confira as novidades mais recentes:</p>
-            <p><strong>Salvamento automático:</strong> O número de telefone digitado é salvo automaticamente (em seu navegador, de maneira local) para futuras visitas.</p>
-            <p><strong>Temas para a página:</strong> Você pode alterar o tema entre <em>Claro</em> e <em>Escuro</em> para utilizar a ferramenta da melhor forma.</p>
-            <p><strong>Auxílio com problemas:</strong> A ferramenta é capaz de, proativamente, indicar problemas e onde se encontram.</p>
-            <p><strong>Atalhos de teclado:</strong> Ao terminar de digitar em um campo, você pode apertar <em>Enter</em> para seguir diretamente para o próximo passo.</p>
+            <p><strong>Modo escuro otimizado:</strong> Agora o modo escuro conta com uma paleta de cores mais agradável e harmônica.</p>
             <p>O que achou das novidades? Você pode conferir as mudanças mais técnicas diretamente no meu <span style="text-decoration: underline; cursor: pointer;" onclick="abrirPopup('#popup_info')">repositório do GitHub</span>!</p>
             <div class="container_btns">
                 <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_log_novidades">Fechar</button>
@@ -138,6 +135,15 @@
         </article>
 
         <!--MINI NOTIFICAÇÕES-->
+        <!--BOAS-VINDAS-->
+        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_boas-vindas">
+            <img src="logo.png" alt="" height="96" width="96">
+            <div>
+                <h3>Boas-vindas!</h3>
+                <p>Você está no lugar certo &#x1F609;</p>
+            </div>
+        </article>
+        
         <!--SUCESSO-->
         <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_link_sucesso">
             <img loading="lazy" src="imagens/sucesso_popup.png" alt="" height="96" width="96">
@@ -157,15 +163,6 @@
                 <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_erro">Fechar</button>
             </div>
         </article>
-
-        <!--BOAS-VINDAS-->
-        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_boas-vindas">
-            <img loading="lazy" src="logo.png" alt="" height="96" width="96">
-            <div>
-                <h3>Boas-vindas!</h3>
-                <p>Você está no lugar certo &#x1F609;</p>
-            </div>
-        </article>
         
         <!--NOVIDADES-->
         <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_novidades">
@@ -176,18 +173,6 @@
             </div>
             <div class="container_btns">
                 <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_novidades">Fechar</button>
-            </div>
-        </article>
-
-        <!--COOKIES-->
-        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_cookies">
-            <img loading="lazy" src="imagens/novidade_popup.png" alt="" height="96" width="96">
-            <div>
-                <h3>Cookies salvos</h3>
-                <p>Não cookies salvos.</p>
-            </div>
-            <div class="container_btns">
-                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_cookies">Fechar</button>
             </div>
         </article>
     </section>

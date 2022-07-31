@@ -21,9 +21,8 @@ function pegarValorCookie(nome=''){
     return '...'
 }
 
-let versao_da_ferramenta = 'versao1.2'
-//↑↑ COOKIES
-
+let versao_da_ferramenta = 'versao1.3'
+//↑↑ COOKIES & ARMAZENAMENTO LOCAL
 
 //↓↓ CONSTANTES
 const temaPagina = document.querySelector('#tema_da_pagina_btn')
@@ -36,22 +35,21 @@ let temaDaPagina = 'Claro'
 
 
 //↓↓ ACIONADORES
-window.addEventListener('DOMContentLoaded', function(){if(pegarValorCookie('tema') != '...'){pegarValorCookie('tema') === 'Escuro' ? temaDaPagina = 'Escuro' : temaDaPagina = 'Claro'; alterarTema()}})
+window.addEventListener('DOMContentLoaded', function(){if(this.localStorage.getItem('temaDaPagina') != null){this.localStorage.getItem('temaDaPagina') === 'Escuro' ? temaDaPagina = 'Escuro' : temaDaPagina = 'Claro'; alterarTema()}})
 
-window.addEventListener("load", function(){
+
+window.addEventListener('load', function(){
     document.querySelector('#numero_telefone').focus()
 
-    document.querySelector('#popup_noti_cookies > div:first-of-type > p:first-of-type').innerText = document.cookie
+    if(this.localStorage.getItem('totalVisitas') == 1){this.localStorage.setItem('totalVisitas',1)}else{this.localStorage.setItem('totalVisitas', Number(this.localStorage.getItem('totalVisitas')) + 1)}
 
-    if(pegarValorCookie('ultima_visita') === '...'){definirCookies('ultima_visita',versao_da_ferramenta,90);abrirPopup('#popup_noti_boas-vindas');setTimeout(() => {fecharPopup('#popup_noti_boas-vindas')}, 2000);} else if (pegarValorCookie('ultima_visita') != versao_da_ferramenta){definirCookies('ultima_visita',versao_da_ferramenta,90);abrirPopup('#popup_log_novidades');}
+    //Esse código será excluído na versão 1.4
+    if(pegarValorCookie('ultima_visita') != '...'){this.localStorage.setItem('ultimaVersaoAcessada', pegarValorCookie('ultima_visita')); definirCookies('ultima_visita',0)}
 
-    if(pegarValorCookie('telefone') != '...'){document.querySelector('#numero_telefone').value = pegarValorCookie('telefone')}
+    if(this.localStorage.getItem('ultimaVersaoAcessada') == null){this.localStorage.setItem('ultimaVersaoAcessada', versao_da_ferramenta);abrirPopup('#popup_noti_boas-vindas');setTimeout(() => {fecharPopup('#popup_noti_boas-vindas')}, 2000);} else if(this.localStorage.getItem('ultimaVersaoAcessada') != versao_da_ferramenta){this.localStorage.setItem('ultimaVersaoAcessada', versao_da_ferramenta); abrirPopup('#popup_log_novidades');}
 
-    /*if(pegarValorCookie('mensagem') != '...'){document.querySelector('#mensagem').value = pegarValorCookie('mensagem')}*/
+    if(this.localStorage.getItem('telefone') != null){document.querySelector('#numero_telefone').value = this.localStorage.getItem('telefone')}
 })
-
-/* Removido permanentemente.
-if(window.matchMedia('(prefers-color-scheme: dark)').matches){temaDaPagina = 'Escuro'; alterarTema()} else {temaDaPagina = 'Claro'; alterarTema()}*/
 
 
 //↓↓ POPUPS
@@ -60,82 +58,78 @@ function exibirContainerPopup() {
     document.querySelector('#container_popup').style.display = 'flex';
 }
 
-//Abre o popup requisitado
-function abrirPopup(idDoPopup){
-    //Fecha todos os Popups anteriores (evitar erros)
-    document.querySelectorAll('*[id^="popup_"]').forEach(popup => {popup.style.display = 'none'})
+    //Abre o popup requisitado
+    function abrirPopup(idDoPopup){
+        //Fecha todos os Popups anteriores (evitar erros)
+        document.querySelectorAll('*[id^="popup_"]').forEach(popup => {popup.style.display = 'none'})
 
-    //Aplica os estilos ao respectivo Popup
-    exibirContainerPopup()
-    document.querySelector(idDoPopup).style.display = 'flex';
-
-    //Atalho de teclado para fechar Popup
-    window.addEventListener('keyup', (key) => {if(key.code === 'Escape'){fecharPopup(idDoPopup)}})
-}
-
-//Fecha o popup requisitado
-function fecharPopup(idDoPopup){
-    document.querySelector(idDoPopup).style.animation = 'popupDesaparecer 250ms ease-out';
-
-    //Aplica os estilos ao respectivo Popup
-    setTimeout(() => {
-        document.querySelector(idDoPopup).style.display = 'none';
-        document.querySelector('#container_popup').style.display = 'none';
-        document.querySelector('html').style.overflow = 'scroll'
-        document.querySelector(idDoPopup).style.animationName = 'popupAparecer'
-    }, 250);
-}
-
-//Abre o Popup a partir de interação
-document.querySelectorAll('*[id^="abrir_popup"]').forEach(item => item.addEventListener("click", function() {
-    //Identifica o ID do elemento
-    /*console.log(this.id)
-    console.log('#'+this.id.replace('abrir_', ''))*/
-
-    //Fecha todos os Popups anteriores (evitar erros)
-    document.querySelectorAll('*[id^="popup_"]').forEach(popup => {popup.style.display = 'none'})
-    
-    //Aplica os estilos ao respectivo Popup
-    setTimeout(() => {
+        //Aplica os estilos ao respectivo Popup
         exibirContainerPopup()
-        document.querySelector('#'+this.id.replace("abrir_", "")).style.display = 'flex';
-    }, 125);
+        document.querySelector(idDoPopup).style.display = 'flex';
 
-    //Atalho de teclado para fechar Popup
-    window.addEventListener('keyup', (key) => {if(key.code === 'Escape'){fecharPopup('#'+this.id.replace("abrir_", ""))}})
-}))
+        //Atalho de teclado para fechar Popup
+        window.addEventListener('keyup', tecla => {if(tecla.code === 'Escape'){fecharPopup(idDoPopup)}})
+    }
+
+    //Fecha o popup requisitado
+    function fecharPopup(idDoPopup){
+        document.querySelector(idDoPopup).style.animation = 'popupDesaparecer 250ms ease-out';
+
+        //Aplica os estilos ao respectivo Popup
+        setTimeout(() => {
+            document.querySelector(idDoPopup).style.display = 'none';
+            document.querySelector('#container_popup').style.display = 'none';
+            document.querySelector('html').style.overflow = 'scroll'
+            document.querySelector(idDoPopup).style.animationName = 'popupAparecer'
+        }, 250);
+    }
+
+    //Abre o Popup a partir de interação
+    document.querySelectorAll('*[id^="abrir_popup"]').forEach(item => item.addEventListener("click", function() {
+        //Identifica o ID do elemento
+        /*console.log(this.id)
+        console.log('#'+this.id.replace('abrir_', ''))*/
+
+        //Fecha todos os Popups anteriores (evitar erros)
+        document.querySelectorAll('*[id^="popup_"]').forEach(popup => {popup.style.display = 'none'})
+        
+        //Aplica os estilos ao respectivo Popup
+        setTimeout(() => {
+            exibirContainerPopup()
+            document.querySelector('#'+this.id.replace("abrir_", "")).style.display = 'flex';
+        }, 125);
+
+        //Atalho de teclado para fechar Popup
+        window.addEventListener('keyup', tecla => {if(tecla.code === 'Escape'){fecharPopup('#'+this.id.replace("abrir_", ""))}})
+    }))
 
 
-//Fecha o Popup
-document.querySelectorAll('*[id^="btn_fechar_popup"]').forEach(item => item.addEventListener("click", function() {
-    //Identifica o ID do elemento
-    /*console.log(this.id)
-    console.log('#'+this.id.replace('btn_fechar_', ''))*/
+    //Fecha o Popup
+    document.querySelectorAll('*[id^="btn_fechar_popup"]').forEach(item => item.addEventListener("click", function() {
+        //Identifica o ID do elemento
+        /*console.log(this.id)
+        console.log('#'+this.id.replace('btn_fechar_', ''))*/
 
-    //Aplica os estilos ao respectivo Popup
-    setTimeout(() => {
-        document.querySelector('#'+this.id.replace("btn_fechar_", "")).style.animation = 'popupDesaparecer 250ms ease-out';
-    }, 125);
-    setTimeout(() => {
-        document.querySelector('#'+this.id.replace("btn_fechar_", "")).style.display = 'none';
-        document.querySelector('#container_popup').style.display = 'none';
-        document.querySelector('html').style.overflow = 'scroll'
-        document.querySelector('#'+this.id.replace("btn_fechar_", "")).style.animationName = 'popupAparecer'
-    }, 375);
-}))
-
-function abrirPopupInfo_auxiliar1(){
-    document.querySelector('#abrir_popup_info').click()
-}
+        //Aplica os estilos ao respectivo Popup
+        setTimeout(() => {
+            document.querySelector('#'+this.id.replace("btn_fechar_", "")).style.animation = 'popupDesaparecer 250ms ease-out';
+        }, 125);
+        setTimeout(() => {
+            document.querySelector('#'+this.id.replace("btn_fechar_", "")).style.display = 'none';
+            document.querySelector('#container_popup').style.display = 'none';
+            document.querySelector('html').style.overflow = 'scroll'
+            document.querySelector('#'+this.id.replace("btn_fechar_", "")).style.animationName = 'popupAparecer'
+        }, 375);
+    }))
 
 
-    //Botões de links no Popup
-    document.querySelector('#link_github_popup').addEventListener('click', function(){setTimeout(() => {
-        window.open('https://github.com/andremourasantos/wplink', '_blank')
-    }, 125);})
-    document.querySelector('#link_doar_popup').addEventListener('click', function(){setTimeout(() => {
-        window.open('https://link.andremourasantos.com/pix', '_blank')
-    }, 125);})
+        //Botões de links no Popup
+        document.querySelector('#link_github_popup').addEventListener('click', function(){setTimeout(() => {
+            window.open('https://github.com/andremourasantos/wplink', '_blank')
+        }, 125);})
+        document.querySelector('#link_doar_popup').addEventListener('click', function(){setTimeout(() => {
+            window.open('https://link.andremourasantos.com/pix', '_blank')
+        }, 125);})
 
 
 //↓↓ FUNÇÕES
@@ -150,7 +144,7 @@ function alterarTema(interacao=0){
             //Altera os ícones da ferramenta
             document.querySelectorAll('#container_ferramenta > div img').forEach(icone => {icone.src = icone.src.split('.png',1)+'_modo_escuro.png'})
             
-            document.querySelector('head meta:nth-child(1)').content = '#655D8A'
+            document.querySelector('head meta:nth-child(1)').content = '#333333'
             interacao == 1 ? temaDaPagina = 'Escuro': '';
         } else {
             document.querySelector('body').classList.remove('modo_escuro')
@@ -187,7 +181,7 @@ function alterarTema(interacao=0){
         }
     }
 
-    definirCookies('tema', temaDaPagina, 30)
+    localStorage.setItem('temaDaPagina', temaDaPagina)
 }
 
 
@@ -204,29 +198,13 @@ let wplink = {
     ddd: '',
     telefone: '',
     mensagem: '',
-    cookie: function(){
-        definirCookies('telefone', wplink.ddd+wplink.telefone,7)
-        if(wplink.mensagem != ''){definirCookies('mensagem', wplink.mensagem,1)}
-    },
-    criarlink: function(){
-        this.link = `https://api.whatsapp.com/send/?phone=${this.pais+this.ddd+this.telefone}${this.mensagem !='' ? `&text=${this.mensagem.replaceAll(' ', '%20')}`: ``}`
-    },
+    salvar: () => {localStorage.setItem('telefone', wplink.ddd+wplink.telefone)
+        if(wplink.mensagem != ''){localStorage.setItem('mensagem', wplink.mensagem)}},
+    criarlink: function() {this.link = `https://api.whatsapp.com/send/?phone=${this.pais+this.ddd+this.telefone}${this.mensagem !='' ? `&text=${this.mensagem.replaceAll(' ', '%20')}`: ``}`},
+    contagemDeLinks: () => {if(localStorage.getItem('contagemDeLinks') == null){localStorage.setItem('contagemDeLinks',0)} else{localStorage.setItem('contagemDeLinks',Number(localStorage.getItem('contagemDeLinks')) + 1)}},
     link: ''
 }
 //↑↑ CONFIGURAÇÕES
-
-
-//↓↓ TESTE DE COOKIES
-/* Utilize esse código para testar os cookies da página.
-window.addEventListener('load', function(){
-    if(pegarValorCookie('usuario') == '...'){
-        let nomeUsuario = prompt('Olá, qual seu nome?')
-        definirCookies('usuario',nomeUsuario,1)
-    } else {this.alert(`Bem-vindo de volta, ${pegarValorCookie('usuario')}.`)}
-
-    if(pegarValorCookie('telefone') != '...'){alert('Os dados do seu último acesso foram salvos e serão exibidos.')}
-})
-*/
 
 
 //↓↓ ACIONADORES
@@ -236,11 +214,11 @@ document.querySelector('#mensagem').addEventListener('focus', function(){documen
 
 
 //↓↓ ATALHOS DE TECLADO
-document.querySelector('#numero_telefone').addEventListener('keyup', (tecla) => {if(tecla.code === 'Enter'){document.querySelector('#mensagem').focus()}else{}})
+document.querySelector('#numero_telefone').addEventListener('keyup', tecla => {if(tecla.code === 'Enter'){document.querySelector('#mensagem').focus()}else{}})
 
-document.querySelector('#mensagem').addEventListener('keyup', (tecla) => {if(tecla.code === 'Enter'){btnObterLink.focus()} else{}})
+document.querySelector('#mensagem').addEventListener('keyup', tecla => {if(tecla.code === 'Enter'){btnObterLink.focus()} else{}})
 
-window.addEventListener('keydown', (tecla) => {if(tecla.code == 'KeyL' && tecla.altKey == true){abrirPopup('#popup_log_novidades')}})
+window.addEventListener('keydown', tecla => {if(tecla.code == 'KeyL' && tecla.altKey == true){abrirPopup('#popup_log_novidades')}})
 
 
 //↓↓ FUNÇÕES
@@ -253,7 +231,7 @@ function verificarEntradasFerramenta(){
     wplink.ddd = document.querySelector('#numero_telefone').value.substring(0,2)
     wplink.mensagem = document.querySelector('#mensagem').value
 
-    if(document.querySelector('#numero_telefone').value === ''){exibirErro('campoVazio')} else if(dddsBrasil.indexOf(Number(wplink.ddd)) == -1){exibirErro('ddd')} else if(wplink.telefone.length >= 8 && wplink.telefone.length <=9){wplink.criarlink();wplink.cookie();exibirLink()} else{exibirErro('telefone')}
+    if(document.querySelector('#numero_telefone').value === ''){exibirErro('campoVazio')} else if(dddsBrasil.indexOf(Number(wplink.ddd)) == -1){exibirErro('ddd')} else if(wplink.telefone.length >= 8 && wplink.telefone.length <=9){wplink.criarlink();wplink.salvar();wplink.contagemDeLinks();exibirLink()} else{exibirErro('telefone')}
 }
 
 function exibirLink(){

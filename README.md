@@ -18,6 +18,11 @@ Uma ferramenta simples que auxilia na criação de links encurtados para o Whats
 
 ## Log
 
+- **Atualização 1.3**
+    - Atualização de código.
+    - Melhoria da paleta de cores para o modo escuro.
+    - Os Cookies serão substituídos pelo Armazenamento Local.
+
 - **Atualização 1.2: Modo Escuro**
     - Adicionado atalhos de teclado.
     - Adicionado o tema Escuro para o site!

@@ -31,16 +31,16 @@
 }
 
 .modo_escuro {
-    --cor_plano_de_fundo: #655D8A;
+    --cor_plano_de_fundo: #333333;
     --cor_plano_de_fundo_2: #F5F0BB;
-    --cor_plano_de_fundo_3: #527184;
+    --cor_plano_de_fundo_3: #5c5c5c;
     --cor_titulo_principal: #D885A3;
     --cor_titulo_secundario: #8F6336;
     --cor_texto: #FDCEB9;
     --cor_btn_principal: #D885A3;
-    --cor_btn_secundario: #7897AB;
-    --cor_texto_btn_principal: #FDCEB9;
-    --cor_texto_btn_secundario: #655D8A;
+    --cor_btn_secundario: #5c5c5c;
+    --cor_texto_btn_principal: #F5F0BB;
+    --cor_texto_btn_secundario: #FDCEB9;
     --cor_icones: #D885A3;
     --cor_borda_principal: #D885A3;
     --cor_borda_secundaria: #FDCEB9;
@@ -304,6 +304,11 @@ main section {
         margin: 0;
         user-select: all;
         font-weight: normal;
+        text-overflow: ellipsis;
+    }
+
+    #ferramenta_saida_link:hover, #ferramenta_saida_link:active {
+        text-overflow: clip;
     }
 
     p#ferramenta_saida_link::-webkit-scrollbar {
