@@ -20,8 +20,33 @@ function pegarValorCookie(nome=''){
 
     return '...'
 }
+/*
+let cookies = [
+    definir = function (nome,valor,validade=0){
+        const dia = new Date()
+        dia.setTime(dia.getTime() + (validade*24*60*60*1000))
+        document.cookie = nome + '=' + valor +'; expires='+ dia.toUTCString()+';'
+    
+        //Registra as alterações na página
+        document.querySelector('#popup_noti_cookies > div:first-of-type > p:first-of-type').innerText = document.cookie
+    },
+    pegar = function (nome=''){
+        let cookies = document.cookie.split(';')
+    
+        for(i=0;i<cookies.length;i++){
+            let nomeCookie = cookies[i]
+            if(nomeCookie.charAt(0) === ' '){nomeCookie = nomeCookie.substring(1)}
+            if(nomeCookie.split('=')[0] === nome){
+                return nomeCookie.split('=')[1]
+            }
+        }
+    
+        return '...'
+    }
+]
+*/
 
-let versao_da_ferramenta = 'versao1.3'
+let versao_da_ferramenta = 'versao1.3.1'
 //↑↑ COOKIES & ARMAZENAMENTO LOCAL
 
 //↓↓ CONSTANTES
@@ -41,7 +66,7 @@ window.addEventListener('DOMContentLoaded', function(){if(this.localStorage.getI
 window.addEventListener('load', function(){
     document.querySelector('#numero_telefone').focus()
 
-    if(this.localStorage.getItem('totalVisitas') == 1){this.localStorage.setItem('totalVisitas',1)}else{this.localStorage.setItem('totalVisitas', Number(this.localStorage.getItem('totalVisitas')) + 1)}
+    if(this.localStorage.getItem('totalVisitas') == null){this.localStorage.setItem('totalVisitas',1)}else{this.localStorage.setItem('totalVisitas', Number(this.localStorage.getItem('totalVisitas')) + 1)}
 
     //Esse código será excluído na versão 1.4
     if(pegarValorCookie('ultima_visita') != '...'){this.localStorage.setItem('ultimaVersaoAcessada', pegarValorCookie('ultima_visita')); definirCookies('ultima_visita',0)}
@@ -177,7 +202,7 @@ function alterarTema(interacao=0){
 
             //Altera os ícones da ferramenta
             document.querySelectorAll('#container_ferramenta > div img').forEach(icone => {icone.src = icone.src.split('.png',1)+'_modo_escuro.png'})
-            document.querySelector('head meta:nth-child(1)').content = '#655D8A'
+            document.querySelector('head meta:nth-child(1)').content = '#333333'
         }
     }
 

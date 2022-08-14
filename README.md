@@ -18,6 +18,10 @@ Uma ferramenta simples que auxilia na criação de links encurtados para o Whats
 
 ## Log
 
+- **Atualização 1.3.1**
+    - Correção da cor do cabeçalho do navegador (Chrome) para a nova cor do plano de fundo.
+    - Correção de código que reiniciava a contagem de acessos do usuário.
+
 - **Atualização 1.3**
     - Atualização de código.
     - Melhoria da paleta de cores para o modo escuro.
