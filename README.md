@@ -15,8 +15,19 @@ Uma ferramenta simples que auxilia na criação de links encurtados para o Whats
 - Criar atalhos de teclado para executar ações na página.
 - Uso de variáveis CSS para rápida manipulação e manutenção de elementos em cascata (modo claro/escuro).
 - Criação de código limpo e comentado.
+- Estilização de entradas do usuário.
 
 ## Log
+
+- **Atualização 2.0**
+    - Adicionado painel PUAU com a opção "Salvar Dados" operacional.
+        - Essa é a primeira ferramenta a utilizar uma das opções do PUAU.
+    - Integração com a minha página de ferramentas.
+    - Melhorias na leitura do número de telefone.
+    - Reescrita completa do código de JavaScript da página.
+    - Refação do layout de exibição da ferramenta.
+    - Remoção do botão de doação.
+    - Troca das imagens por ícones do Phosphoricons.
 
 - **Atualização 1.3.1**
     - Correção da cor do cabeçalho do navegador (Chrome) para a nova cor do plano de fundo.
@@ -52,6 +63,9 @@ Uma ferramenta simples que auxilia na criação de links encurtados para o Whats
 
 ## Imagem do projeto 📸
 Confira as imagens do projeto durante o tempo. Abaixo, segue as atualizações que promoveram uma mudança no visual principal do site.
+
+- **Versão 2.0**
+![imagem_v2.0_computador.png](https://andremourasantos.com/wplink/imagens/imagem_v2.0_computador.png)
 
 - **Versão 1.1**: [Atualização Kawaii!](https://github.com/andremourasantos/wplink/commit/e2c4f930b241d96a47c6c4b005896a5b28eb10be)
 ![Screenshot 2022-07-17 11 08 15](https://user-images.githubusercontent.com/92397834/179402261-1b967e71-8466-423b-b150-aa07f9cdf3ec.png)

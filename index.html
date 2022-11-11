@@ -11,6 +11,10 @@
     <meta property="og:url" content="www.andremourasantos.com/wplink">
     <meta name="image" property="og:image" content="https://andremourasantos.com/wplink/capa.png">
 
+    <!-- PRECONNECT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com/" crossorigin>
+
     <!-- OUTRAS TAGS -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,14 +22,21 @@
     <meta name="author" content="André Moura Santos">
     <meta name="application-name" content="Link de WhatsApp">
 
-    <!-- LINKS -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <!--LINKS-->
+    <link rel="stylesheet" href="https://apps.andremourasantos.com/universal.css">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
+
+    <!--SCRIPTS-->
+    <script defer src="https://unpkg.com/phosphor-icons"></script>
+    <script defer src="script.js"></script>
+    <script defer src="https://apps.andremourasantos.com/essencial.js"></script>
 
     <title>Link de WhatsApp</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+        #ferramenta > div {
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
@@ -35,54 +46,56 @@
             <img id="logo-cabeçalho" src="logo.png" alt="Ícone de link." height="60" width="60">
             <div>
                 <h1>Link de WhatsApp</h1>
-                <p id="subtitulo_1">Crie links facilmente com a API oficial do WhatsApp.</p>
-                <p id="subtitulo_2">Crie links facilmente.</p>
+                <p>Crie links facilmente.</p>
             </div>
         </section>
+        
         <!--DIREITA/BAIXO-->
-        <section>
-            <button id="tema_da_pagina_btn" class="btn_menu btn_menu_icone" onclick="alterarTema(1)"><img src="imagens/tema.png" alt="Ícone de Sol." height="40" width="40"></button>
-            <button id="abrir_popup_doacao" class="btn_menu_icone" ><img src="imagens/doacao.png" alt="" height="40" width="40"></button>
-            <button id="abrir_popup_info" class="btn_menu btn_menu_icone"><img src="imagens/info.png" alt="Ícone de informação." height="40" width="40"></button>
+        <section id="icones_cabecalho">
+            <button class="btn_menu_icone" id="alteraTemaPagina"><i class="ph-moon-fill" title="Alterar tema da página"></i></button>
+            <button class="btn_menu_icone" id="icone_Ajustes"><i class="ph-sliders-fill" title="Painel de ajustes e acessibilidade"></i></button>
+            <button class="btn_menu_icone" id="icone_Info"><i class="ph-info-fill" title="Sobre o projeto"></i></button>
         </section>
     </header>
-    <main>
+
+    <main class="duas_colunas">
         <!--ESQUERDA/CIMA-->
-        <section>
-            <article id="container_ferramenta">
-                <div id="ferramenta_entradas">
-                    <div id="ferramenta_entrada_telefone">
-                        <img src="imagens/telefone.png" alt="" height="45" width="45">
-                        <div>
-                            <p>Digite o telefone</p>
-                            <input type="number" name="numero_telefone" id="numero_telefone" placeholder="00 91234 5678" onkeydown="limitarCaracteres(this);" onkeyup="limitarCaracteres(this);">
-                        </div>
-                    </div>
-                    <div id="ferramenta_entrada_mensagem">
-                        <img src="imagens/mensagem.png" alt="" height="45" width="45">
-                        <div>
-                            <p>Escreva sua mensagem</p>
-                            <input type="text" name="mensagem" id="mensagem" placeholder="ex: Oi, gostaria de saber mais sobre...">
-                        </div>
-                    </div>
-                    <div style="display:none;"d id="ferramenta_saida">
-                        <div>
-                            <p>Seu link:</p>
-                            <p onclick="copiarLink()" id="ferramenta_saida_link">Seu link será gerado aqui...</p>
-                        </div>
-                        <button id="ferramenta_saida_copiar"><img src="imagens/link.png" alt="" height="30" width="30"></button>
-                    </div>
-                </div>
-                <div class="container_btns">
-                    <button id="obter_link_btn">Obter link</button>
-                    <button disabled id="abrir_link_btn"><img src="imagens/abrir_link.png" alt="" onclick="abrirLink()" height="50" width="50"></button>
+        <section id="container_ferramenta" class="principal">
+            <article id="ferramenta">
+                <section id="ferramenta_entrada_telefone" class="ferramenta_entrada">
+                    <i class="ph-phone-fill"></i>
+                    <section>
+                        <p>Digite o telefone:</p>
+                        <input type="text" name="numero_telefone" id="numero_telefone" placeholder="(00) 91234-5678">
+                    </section>
+                </section>
+
+                <section id="ferramenta_entrada_mensagem" class="ferramenta_entrada">
+                    <i class="ph-chat-circle-fill"></i>
+                    <section>
+                        <p>Escreva sua mensagem (opcional):</p>
+                        <input type="text" name="mensagem" id="mensagem" placeholder="ex: Oi, gostaria de saber mais sobre..." autocomplete="off">
+                    </section>
+                </section>
+                
+                <section id="saida_link" class="ferramenta_entrada" style="display: none;">
+                    <i class="ph-link-bold"></i>
+                    <section>
+                        <p>Aqui está seu link:</p>
+                        <input type="text" name="link_gerado" id="link_gerado" readonly placeholder="Seu link será gerado aqui...">
+                    </section>
+                </section>
+
+                <div class="container_btns_popup">
+                    <button id="obter_link_btn" class="btn_popup btn_acao_popup">Obter link</button>
+                    <button id="copiar_link_btn" class="btn_menu_icone" style="display: none;" title="Copiar para área de transferência" onclick="copiarLink()"><i class="ph-clipboard-text-fill"></i></button>
                 </div>
             </article>
         </section>
         <!--DIREITA/BAIXO-->
-        <section>
-            <article id="container_sobre">
-                <img loading="lazy" src="imagens/questao.png" alt="Ícone de pergunta." height="96" width="96">
+        <section id="informacoes" class="principal">
+            <article id="container_informacoes">
+                <img loading="lazy" src="https://apps.andremourasantos.com/imagens/questao.png" alt="Ícone de pergunta." height="96" width="96">
                 <h2>Como funciona?</h2>
                 <p>Para criar um link de WhatsApp basta que você digite o número de telefone, com o DDD, e, opcionalmente, você também pode adicionar uma mensagem, após isso, clique em "Obter link" e pronto!</p>
                 <p>Seu link será criado através da API oficial do WhatsApp e não contará com nenhum tipo de propaganda ou link suspeito.</p>
@@ -90,53 +103,42 @@
             </article>
         </section>
     </main>
+
     <footer>
-        <p>Desenvolvido por <a href="http://andremourasantos.com" target="_blank">André Moura Santos</a>. Ícones de <a href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phospor Icons</a> e <a href="https://www.flaticon.com/authors/kawaii/flat" target="_blank" rel="noopener noreferrer">Flat Icon</a>. Feito no &#x1F1E7;&#x1F1F7; Brasil.</p>   
+        <p>Desenvolvido por <a href="https://andremourasantos.com" target="_blank" rel="next">André Moura Santos</a>. Ícones de <a href="https://phosphoricons.com/" target="_blank" rel="noopener noreferrer">Phospor Icons</a> e <a href="https://www.flaticon.com/authors/kawaii/flat" target="_blank" rel="noopener noreferrer">Flaticon</a>. Feito no 🇧🇷 Brasil.</p>
     </footer>
 
     <!--POPUPS-->
     <section style="display: none;" id="container_popup">
         <!--SOBRE O PROJETO-->
-        <article class="popup" id="popup_info" style="display: none;">
-            <img loading="lazy" src="imagens/sobre_popup.png" alt="" height="128" width="128">
+        <article class="popup" id="popup_sobre" style="display: none;">
+            <img loading="lazy" src="https://apps.andremourasantos.com/imagens/sobre_popup.png" alt="" height="128" width="128">
             <h2>Sobre o projeto</h2>
             <p>O objetivo desse projeto é proporcionar uma ferramenta útil e de livre acesso para criar links de WhatsApp sem propaganda, com foco exclusivo no Brasil.</p>
-            <p>Confira as últimas novidades da ferramenta <span onclick="abrirPopup('#popup_log_novidades')" style="text-decoration: underline; cursor: pointer;">clicando aqui</span> ou pressione Alt + L!</p>
+            <p>Confira as últimas novidades da ferramenta <span onclick="abrirPopup('popup_log_novidades')" style="text-decoration: underline; cursor: pointer;">clicando aqui</span>.</p>
             <p>Todo o código da página é de livre acesso e se encontra no repositório do GitHub de André Moura Santos, com licença MIT.</p>
-            <div class="container_btns">
-                <button id="btn_fechar_popup_info" class="btn_popup btn_fechar_popup">Fechar</button>
-                <button class="btn_popup btn_acao_popup" id="link_github_popup">GitHub</button>
-            </div>
-        </article>
-
-        <!--DOAÇÃO-->
-        <article class="popup" id="popup_doacao" style="display: none;">
-            <img loading="lazy" src="imagens/doacao_popup.png" alt="" height="128" width="128">
-            <h2>Doe para o projeto</h2>
-            <p>A ferramenta de <a href="index.html" target="_self">Link de WhatsApp</a> é gratuita e sem anúncios ou subscrições, pois é um projeto solo criado sem motivação financeira.</p>
-            <p>Para auxiliar novos programadores com o seu desenvolvimento, o código da página também está publicamente disponível, comentado e com licença de uso livre.</p>
-            <p>Você pode incentivar a atualização deste projeto e na criação de mais ferramentas ao doar qualquer quantia!</p>
-            <div class="container_btns">
-                <button id="btn_fechar_popup_doacao" class="btn_popup btn_fechar_popup">Fechar</button>
-                <button class="btn_popup btn_acao_popup" id="link_doar_popup">Doar</button>
+            <div class="container_btns_popup">
+                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_info" onclick="fecharPopup('popup_sobre')">Fechar</button>
+                <button class="btn_popup btn_acao_popup" id="link_github_popup" onclick="(abrirLink(`github.com/andremourasantos/wplink`))">GitHub</button>
             </div>
         </article>
 
         <!--LOG-->
         <article class="popup" style="display: none;" id="popup_log_novidades">
-            <img loading="lazy" src="imagens/novidades_versao.png" alt="" height="128" width="128">
+            <img loading="lazy" src="https://apps.andremourasantos.com/imagens/novidades_versao.png" alt="" height="128" width="128">
             <h2>Tem novidade desde a sua última visita!</h2>
-            <p>A ferramenta de <a href="index.html" target="_self">Link de WhatsApp</a> está sempre sendo atualizada, confira as novidades mais recentes:</p>
-            <p><strong>Modo escuro otimizado:</strong> Agora o modo escuro conta com uma paleta de cores mais agradável e harmônica.</p>
-            <p>O que achou das novidades? Você pode conferir as mudanças mais técnicas diretamente no meu <span style="text-decoration: underline; cursor: pointer;" onclick="abrirPopup('#popup_info')">repositório do GitHub</span>!</p>
+            <p><strong>Conheça o PUAU:</strong> O novo <span style="text-decoration: underline; cursor: pointer;" onclick="abrirPopup('popup_puau')"><em>Painel Universal de Ajustes do Usuário</em></span> está disponvível agora nesta página! Com ele você pode salvar suas preferências de uso e muito mais.</p>
+            <p><strong>Melhorias de leitura:</strong> Agora o número de telefone digitado é formatado de maneira a facilitar a sua leitura.</p>
+            <p><strong>Melhorias na usabilidade:</strong> A ferramenta adaptará a exibição das entradas, proporcionando uma experiência de uso mais direta.</p>
+            <p>O que achou das novidades? Você pode conferir as mudanças mais técnicas diretamente no meu <span style="text-decoration: underline; cursor: pointer;" onclick="abrirPopup('popup_sobre')">repositório do GitHub</span>!</p>
             <div class="container_btns">
-                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_log_novidades">Fechar</button>
+                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_log_novidades" onclick="fecharPopup('popup_log_novidades')">Fechar</button>
             </div>
         </article>
 
         <!--MINI NOTIFICAÇÕES-->
-        <!--BOAS-VINDAS-->
-        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_boas-vindas">
+        <!--BOAS-VINDAS (NÃO UTILIZADO)-->
+        <article class="minipopup" style="display: none;" id="popup_BoasVindas">
             <img src="logo.png" alt="" height="96" width="96">
             <div>
                 <h3>Boas-vindas!</h3>
@@ -145,37 +147,21 @@
         </article>
         
         <!--SUCESSO-->
-        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_link_sucesso">
-            <img loading="lazy" src="imagens/sucesso_popup.png" alt="" height="96" width="96">
+        <article class="minipopup" style="display: none;" id="popup_noti_link_sucesso">
+            <img loading="lazy" src="https://apps.andremourasantos.com/imagens/sucesso_popup.png" alt="" height="96" width="96">
             <div>
                 <h3>Link criado com sucesso</h3>
             </div>
         </article>
 
         <!--ERRO-->
-        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_erro">
-            <img loading="lazy" src="imagens/erro_popup.png" alt="" height="96" width="96">
+        <article class="minipopup" style="display: none;" id="popup_noti_erro">
+            <img loading="lazy" src="https://apps.andremourasantos.com/imagens/erro_popup.png" alt="" height="96" width="96">
             <div>
                 <h3>Ops, algo deu errado...</h3>
-                <p id="noti_erro_texto">Por favor, recarregue a página.</p>
-            </div>
-            <div class="container_btns">
-                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_erro">Fechar</button>
-            </div>
-        </article>
-        
-        <!--NOVIDADES-->
-        <article class="popupMiniNotificacao" style="display: none;" id="popup_noti_novidades">
-            <img loading="lazy" src="imagens/novidade_popup.png" alt="" height="96" width="96">
-            <div>
-                <h3>Em breve novidades!</h3>
-                <p>Você está tentando utilizar um recurso ainda em desenvolvimento.</p>
-            </div>
-            <div class="container_btns">
-                <button class="btn_popup btn_fechar_popup" id="btn_fechar_popup_noti_novidades">Fechar</button>
+                <p>Por favor, recarregue a página.</p>
             </div>
         </article>
     </section>
-<script defer src="script.js"></script>
 </body>
 </html>
